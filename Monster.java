@@ -22,15 +22,15 @@ public abstract class Monster {
 		this.alive = false;
 	}
 
-	public int checkAlive(Hero h) {
+	public int checkAlive(Hero h, int enemyCount) {
 		if (this.hp > 0 && this.alive == true) {
 			this.attack(h);
-			return 0;
 		} else if (this.alive == true) {
 			this.die();
-			return 1;
+
+			enemyCount--;
 		}
-		return 0;
+		return enemyCount;
 	}
 
 }

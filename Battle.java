@@ -5,30 +5,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Battle {
+	PoisonSlime ps = new PoisonSlime("つらいむ");
+	Slime s = new Slime("つらいむ");
 
-	public static void enCount(Hero h) throws Exception {
-		PoisonSlime ps = new PoisonSlime("つらいむ");
-		Slime s = new Slime("つらいむ");
+	public void enCount(Hero h) throws Exception {
+
 		ArrayList<Monster> enemy = new ArrayList<>();
-		enemy.add(ps);
-		enemy.add(s);
+		enemy.add(this.ps);
+		enemy.add(this.s);
 		int enemyCount = enemy.size();
 
 		//ここから戦闘
-		System.out.println(ps.name + "と" + s.name + "が現れた");
-		System.out.println("　　　　　　　ｒ'￣i\r\n" +
-				"　 , - ､　　　　　　　　　ﾞ‐- '\r\n" +
-				"　{　　 }　　　　　　　　　　　　　r'⌒',\r\n" +
-				"　`‐-‐'　　　　　 r'⌒',　　　　　!、_丿\r\n" +
-				"　　◯　　　　　　ヽ-‐'　　＿＿＿\r\n" +
-				"　　　　　　ｒ'⌒',　　 ,,r-‐'　　　　　`''ヽ､　　○\r\n" +
-				"　　　　　　`‐-' 　／　　　　　　　　　　 ＼\r\n" +
-				"　　　　　　, ､ ,,／ r‐､（･） （･）＿　　　　　'─--､,,\r\n" +
-				"　　,,r-─（＿）　　ヽ、`── '　 ノ　　　　i⌒)　　 `,\r\n" +
-				"　（　　　　　　　　　　`'‐──‐'´　　　　　￣　　,r‐\r\n" +
-				"　　￣つ　　　　'⌒'　　　　　　　　　　　,r─‐‐''\r\n" +
-				"　　 (´　　　　　　　　　　　　　　,r──'\r\n" +
-				"　　　￣￣ﾞ'───--------‐'");
+		System.out.println(this.ps.name + "と" + this.s.name + "が現れた");
 
 		while (enemyCount > 0) {
 			System.out.println(enemyCount + "カウント");
@@ -75,8 +63,8 @@ public class Battle {
 				System.out.println("コマンドには数字入れてね！！！！");
 				continue;
 			}
-			enemyCount -= ps.checkAlive(h);//エネミーカウントデクリメント処理を一回だけにしたい
-			enemyCount -= s.checkAlive(h);
+			enemyCount = ps.checkAlive(h, enemyCount);//エネミーカウントデクリメント処理を一回だけにしたい
+			enemyCount = s.checkAlive(h, enemyCount);
 
 			if (h.hp <= 0) {
 				System.out.println(h.name + "は力尽き、その生涯を終えました");
